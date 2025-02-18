@@ -1,13 +1,13 @@
 ---
-title: "Pyton İle Siteden Veri Çekme"
+title: 'Python İle Siteden Veri Çekme'
 date: 2025-02-18T22:16:20+00:00
 author: Serdar Uslu
 layout: post
-permalink: /pyton-ile-siteden-veri-cekme/
+permalink: /python-ile-siteden-veri-cekme/
 categories: Pyton
 tags: [python, veri]
 ---
-## Pyton İle Siteden Veri Çekme
+## Python İle Siteden Veri Çekme
 
 Python ile siteden veri çekmek için genellikle `requests` ve `BeautifulSoup` kütüphanelerini kullanabilirsiniz. İşte temel bir örnek:
 
