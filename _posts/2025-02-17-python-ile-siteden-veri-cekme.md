@@ -1,44 +1,27 @@
 ---
-title: 'Python İle Siteden Veri Çekme'
-date: 2025-02-17T22:16:20+00:00
-author: Serdar Uslu
+title: 'Tek Disketlik İşletim Sistemi - Menuet OS'
+date: 2008-12-02T12:15:26+00:00
+author: Hakan
 layout: post
-permalink: /python-ile-siteden-veri-cekme/
-categories: Pyton
-tags: [python, veri]
+permalink: /tek-disketlik-isletim-sistemi-menuet-os/
+categories: Genel
+tags: [menuet os]
 ---
-## Python İle Siteden Veri Çekme
+Windows, Linux gibi popüler işletim sistemlerinin yanında bir o kadar gelişmiş ama pek bilinmeyen işletim sistemleri gün geçtikçe çoğalıyor.
+  
+Windows'un Vista sürümünün kapladığı alan gb ile ifade edilirken MenuetOS adlı işletim sistemi ise kb ile ifade ediliyor.Öyleki MenuetOS sadece bir diskete sığabiliyor ve disket üzerinden çalışıyor.
+  
+Hurdaya ayrılmış bilgisayarlar üzerinde bile rahatça çalışabilen MenuetOS oldukça kullanışlı bir arayüze sahip. Tamamı Assembly ile yazılmış olan MenuetOS yazılım geliştiriciler tarafından geliştirilmeye uygun bir sistem olmakla beraber <a rel="nofollow" href="http://www.menuetos.net/" target="_blank">www.menuetos.net</a> adresinde kullanıcılarını bekliyor.
 
-Python ile siteden veri çekmek için genellikle `requests` ve `BeautifulSoup` kütüphanelerini kullanabilirsiniz. İşte temel bir örnek:
+Şimdi gelelim MenuetOS'u bilgisayarınızda nasıl deneyeceğinize. Bizzat denedim ve MenuetOS u eski birbilgisayarda çalıştırmayı başardım.
 
-### Adımlar:
+![Linux Shred]({{ site.baseurl }}/assets/images/post/menuetos-desktop.png "Linux Shred")
 
-1. **Gerekli Kütüphaneleri Yükleme**
-2. **Veriyi Çekme**
-3. **HTML'den İlgili Veriyi Ayıklama**
+MenuetOS işletim sistemleri içinde şüphesiz en basit arayüzle kullanıcılarını bekleyen ve diğer işletim sistemleri gibi karmaşık olmayan altayapısı Assembly ile oluşturulmuş bir işletim sistemi.
 
-### Örnek Kod:
 
-Örneğin, bir haber sitesinden başlıkları çekmek isteyelim:
+MenuetOS tek bir diskete sığacak boyutta ve kullanımı oldukça kolay.Tek yapmanız gereken <a rel="nofollow" href="http://www.menuetos.net/" target="_blank">www.menuetos.net</a>sitesinden 32 veya 64 bit (Çalıştıracağınız bilgisayar mimarisine göre değişir) indirdikten sonra .iso uzantılı dosyayı diskete yazdırmak.
 
-```
-import requests
-from bs4 import BeautifulSoup
+Daha sonra kullanmak istediğiniz bilgisayarın disket bölümüne takıp bilgisayarı yeniden başlatmak ve BIOS menüsünden (F2,F5,DEL tuşuyla BIOS menusune girebilirsiniz) boot seçeneğini disket sürücüsü seçmek. Bu işlemleri yaptıktan sonra bilgisayarınızı yeniden başlatınca bilgisayar disket üzerinden başlatılıyor ve bilgisayarınızda kurulu olan diğer işletim sistemine (Windows,Linux,MacOS gibi) hiçbir zarar vermiyor.
 
-# URL'yi belirleyin
-url = 'https://example.com'
-
-# URL'ye GET isteği yapın
-response = requests.get(url)
-
-# HTML içeriğini BeautifulSoup ile ayrıştırın
-soup = BeautifulSoup(response.content, 'html.parser')
-
-# İlgili veriyi (örneğin başlıklar) ayıklayın
-headlines = soup.find_all('h2')  # H2 başlıklarını bul
-
-# Başlıkları yazdırın
-for headline in headlines:
-    print(headline.text)
-
-```
+![Linux Shred]({{ site.baseurl }}/assets/images/post/menuetos-quake.png "Linux Shred")
