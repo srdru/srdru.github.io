@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Serdar Uslu</title>
- <link href="http://localhost:4000/atom.xml" rel="self"/>
- <link href="http://localhost:4000/"/>
- <updated>2025-02-17T18:44:31+03:00</updated>
- <id>http://localhost:4000</id>
+ <link href="https://srdru.github.io/atom.xml" rel="self"/>
+ <link href="https://srdru.github.io/"/>
+ <updated>2025-02-18T18:56:59+03:00</updated>
+ <id>https://srdru.github.io</id>
  <author>
    <name>Serdar Uslu</name>
    <email>srdr@tuta.io</email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Ephesus Jekyll Blog Theme</title>
-   <link href="http://localhost:4000/ephesus-jekyll-blog-theme/"/>
+   <link href="https://srdru.github.io/ephesus-jekyll-blog-theme/"/>
    <updated>2021-09-22T03:00:00+03:00</updated>
-   <id>http://localhost:4000/Ephesus-Jekyll-Blog-Theme</id>
+   <id>https://srdru.github.io/Ephesus-Jekyll-Blog-Theme</id>
    <content type="html">&lt;p&gt;Lorem markdownum nimiumque inutile ulterius tum fluctus arbore aethere in
 laqueosque lorisque tabuerit. Timor pectoraque vetus conspiceris donis arbitrium
 fecerat &lt;em&gt;ait dulci&lt;/em&gt; et reus vultumque ubi &lt;a href=&quot;http://una.net&quot;&gt;mittere&lt;/a&gt; cernunt
@@ -83,9 +83,9 @@ genitoris ad concutit.&lt;/p&gt;
  
  <entry>
    <title>Ephesus The Great Ancient City</title>
-   <link href="http://localhost:4000/ephesus-the-great-ancient-city/"/>
+   <link href="https://srdru.github.io/ephesus-the-great-ancient-city/"/>
    <updated>2021-09-21T03:00:00+03:00</updated>
-   <id>http://localhost:4000/ephesus-the-great-ancient-city</id>
+   <id>https://srdru.github.io/ephesus-the-great-ancient-city</id>
    <content type="html">&lt;p&gt;Lorem markdownum feriam: vir, vulnere cum postquam ocius, ecce. Exsangui totiens
 generis &lt;a href=&quot;http://www.fertur.io/aeacidis&quot;&gt;Iuppiter&lt;/a&gt; dederunt cerva refoventque,
 mea nulla secessit modo et. Hospes &lt;strong&gt;felices stetimusque&lt;/strong&gt; erat: &lt;strong&gt;Niobe
@@ -164,9 +164,9 @@ carchesia Bacchi heros crocique ignibus redeamus quae frustra vidit?&lt;/p&gt;
  
  <entry>
    <title>Elit in massa parturient a class condimentum suspendisse.</title>
-   <link href="http://localhost:4000/elit-in-massa-parturient-a-class-condimentum-suspendisse/"/>
+   <link href="https://srdru.github.io/elit-in-massa-parturient-a-class-condimentum-suspendisse/"/>
    <updated>2021-09-11T03:00:00+03:00</updated>
-   <id>http://localhost:4000/elit-in-massa-parturient-a-class-condimentum-suspendisse</id>
+   <id>https://srdru.github.io/elit-in-massa-parturient-a-class-condimentum-suspendisse</id>
    <content type="html">&lt;p&gt;Lorem markdownum feriam: vir, vulnere cum postquam ocius, ecce. Exsangui totiens
 generis &lt;a href=&quot;http://www.fertur.io/aeacidis&quot;&gt;Iuppiter&lt;/a&gt; dederunt cerva refoventque,
 mea nulla secessit modo et. Hospes &lt;strong&gt;felices stetimusque&lt;/strong&gt; erat: &lt;strong&gt;Niobe
@@ -245,9 +245,9 @@ carchesia Bacchi heros crocique ignibus redeamus quae frustra vidit?&lt;/p&gt;
  
  <entry>
    <title>Binary Search Algorithm - C Programming Example</title>
-   <link href="http://localhost:4000/binary-search-algorithm-c-programming-example/"/>
+   <link href="https://srdru.github.io/binary-search-algorithm-c-programming-example/"/>
    <updated>2021-08-19T03:00:00+03:00</updated>
-   <id>http://localhost:4000/binary-search-algorithm-c-programming-example</id>
+   <id>https://srdru.github.io/binary-search-algorithm-c-programming-example</id>
    <content type="html">&lt;p&gt;Lorem markdownum feriam: vir, vulnere cum postquam ocius, ecce. Exsangui totiens
 generis &lt;a href=&quot;http://www.fertur.io/aeacidis&quot;&gt;Iuppiter&lt;/a&gt; dederunt cerva refoventque,
 mea nulla secessit modo et. Hospes &lt;strong&gt;felices stetimusque&lt;/strong&gt; erat: &lt;strong&gt;Niobe
@@ -329,9 +329,9 @@ carchesia Bacchi heros crocique ignibus redeamus quae frustra vidit?&lt;/p&gt;
  
  <entry>
    <title>Mi adipiscing condimentum malesuada congue enim et</title>
-   <link href="http://localhost:4000/mi-adipiscing-condimentum-malesuada-congue-enim-etnone/"/>
+   <link href="https://srdru.github.io/mi-adipiscing-condimentum-malesuada-congue-enim-etnone/"/>
    <updated>2021-05-12T03:00:00+03:00</updated>
-   <id>http://localhost:4000/sample-12</id>
+   <id>https://srdru.github.io/sample-12</id>
    <content type="html">&lt;p&gt;Lorem markdownum feriam: vir, vulnere cum postquam ocius, ecce. Exsangui totiens
 generis &lt;a href=&quot;http://www.fertur.io/aeacidis&quot;&gt;Iuppiter&lt;/a&gt; dederunt cerva refoventque,
 mea nulla secessit modo et. Hospes &lt;strong&gt;felices stetimusque&lt;/strong&gt; erat: &lt;strong&gt;Niobe
@@ -410,9 +410,9 @@ carchesia Bacchi heros crocique ignibus redeamus quae frustra vidit?&lt;/p&gt;
  
  <entry>
    <title>Justo imperdiet condimentum ad cum aca</title>
-   <link href="http://localhost:4000/justo-imperdiet-condimentum-ad-cum-acanone/"/>
+   <link href="https://srdru.github.io/justo-imperdiet-condimentum-ad-cum-acanone/"/>
    <updated>2021-02-09T03:00:00+03:00</updated>
-   <id>http://localhost:4000/sample-3</id>
+   <id>https://srdru.github.io/sample-3</id>
    <content type="html">&lt;p&gt;Lorem markdownum feriam: vir, vulnere cum postquam ocius, ecce. Exsangui totiens
 generis &lt;a href=&quot;http://www.fertur.io/aeacidis&quot;&gt;Iuppiter&lt;/a&gt; dederunt cerva refoventque,
 mea nulla secessit modo et. Hospes &lt;strong&gt;felices stetimusque&lt;/strong&gt; erat: &lt;strong&gt;Niobe
@@ -491,9 +491,9 @@ carchesia Bacchi heros crocique ignibus redeamus quae frustra vidit?&lt;/p&gt;
  
  <entry>
    <title>Metus vestibulum id vehicula a gravida venenatis potenti ut vehicula</title>
-   <link href="http://localhost:4000/metus-vestibulum-id-vehicula-a-gravida-venenatis-potenti-ut-vehiculanone/"/>
+   <link href="https://srdru.github.io/metus-vestibulum-id-vehicula-a-gravida-venenatis-potenti-ut-vehiculanone/"/>
    <updated>2021-02-07T03:00:00+03:00</updated>
-   <id>http://localhost:4000/sample-2</id>
+   <id>https://srdru.github.io/sample-2</id>
    <content type="html">&lt;p&gt;Lorem markdownum feriam: vir, vulnere cum postquam ocius, ecce. Exsangui totiens
 generis &lt;a href=&quot;http://www.fertur.io/aeacidis&quot;&gt;Iuppiter&lt;/a&gt; dederunt cerva refoventque,
 mea nulla secessit modo et. Hospes &lt;strong&gt;felices stetimusque&lt;/strong&gt; erat: &lt;strong&gt;Niobe
