@@ -1,6 +1,6 @@
 ---
 title: 'Python İle Siteden Veri Çekme'
-date: 2025-02-18T22:16:20+00:00
+date: 2025-02-17T22:16:20+00:00
 author: Serdar Uslu
 layout: post
 permalink: /python-ile-siteden-veri-cekme/
