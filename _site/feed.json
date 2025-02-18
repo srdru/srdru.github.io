@@ -16,5 +16,24 @@
     
 "items": [
     
+        {
+            "id": "https://srdru.github.io/python-ile-siteden-veri-cekme/",
+            "title": "Python İle Siteden Veri Çekme",
+            "summary": null,
+            "content_text": "Python İle Siteden Veri ÇekmePython ile siteden veri çekmek için genellikle requests ve BeautifulSoup kütüphanelerini kullanabilirsiniz. İşte temel bir örnek:Adımlar:  Gerekli Kütüphaneleri Yükleme  Veriyi Çekme  HTML’den İlgili Veriyi AyıklamaÖrnek Kod:Örneğin, bir haber sitesinden başlıkları çekmek isteyelim:import requestsfrom bs4 import BeautifulSoup# URL'yi belirleyinurl = 'https://example.com'# URL'ye GET isteği yapınresponse = requests.get(url)# HTML içeriğini BeautifulSoup ile ayrıştırınsoup = BeautifulSoup(response.content, 'html.parser')# İlgili veriyi (örneğin başlıklar) ayıklayınheadlines = soup.find_all('h2')  # H2 başlıklarını bul# Başlıkları yazdırınfor headline in headlines:    print(headline.text)",
+            "content_html": "<h2 id=\"python-i̇le-siteden-veri-çekme\">Python İle Siteden Veri Çekme</h2><p>Python ile siteden veri çekmek için genellikle <code class=\"language-plaintext highlighter-rouge\">requests</code> ve <code class=\"language-plaintext highlighter-rouge\">BeautifulSoup</code> kütüphanelerini kullanabilirsiniz. İşte temel bir örnek:</p><h3 id=\"adımlar\">Adımlar:</h3><ol>  <li><strong>Gerekli Kütüphaneleri Yükleme</strong></li>  <li><strong>Veriyi Çekme</strong></li>  <li><strong>HTML’den İlgili Veriyi Ayıklama</strong></li></ol><h3 id=\"örnek-kod\">Örnek Kod:</h3><p>Örneğin, bir haber sitesinden başlıkları çekmek isteyelim:</p><div class=\"language-plaintext highlighter-rouge\"><div class=\"highlight\"><pre class=\"highlight\"><code>import requestsfrom bs4 import BeautifulSoup# URL'yi belirleyinurl = 'https://example.com'# URL'ye GET isteği yapınresponse = requests.get(url)# HTML içeriğini BeautifulSoup ile ayrıştırınsoup = BeautifulSoup(response.content, 'html.parser')# İlgili veriyi (örneğin başlıklar) ayıklayınheadlines = soup.find_all('h2')  # H2 başlıklarını bul# Başlıkları yazdırınfor headline in headlines:    print(headline.text)</code></pre></div></div>",
+            "url": "https://srdru.github.io/python-ile-siteden-veri-cekme/",
+            
+            
+            
+            "tags": ["python","veri"],
+            
+            "date_published": "2025-02-19T01:16:20+03:00",
+            "date_modified": "2025-02-19T01:16:20+03:00",
+            
+                "author": "Serdar Uslu"
+            
+        }
+    
     ]
 }

@@ -4,13 +4,57 @@
  <title>serdar uslu | srdru.github.io</title>
  <link href="https://srdru.github.io/atom.xml" rel="self"/>
  <link href="https://srdru.github.io/"/>
- <updated>2025-02-18T22:39:18+03:00</updated>
+ <updated>2025-02-18T22:57:04+03:00</updated>
  <id>https://srdru.github.io</id>
  <author>
    <name>Serdar Uslu</name>
    <email>srdr@tuta.io</email>
  </author>
 
+ 
+ <entry>
+   <title>Python İle Siteden Veri Çekme</title>
+   <link href="https://srdru.github.io/python-ile-siteden-veri-cekme/"/>
+   <updated>2025-02-19T01:16:20+03:00</updated>
+   <id>https://srdru.github.io/python-ile-siteden-veri-cekme</id>
+   <content type="html">&lt;h2 id=&quot;python-i̇le-siteden-veri-çekme&quot;&gt;Python İle Siteden Veri Çekme&lt;/h2&gt;
+
+&lt;p&gt;Python ile siteden veri çekmek için genellikle &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;requests&lt;/code&gt; ve &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BeautifulSoup&lt;/code&gt; kütüphanelerini kullanabilirsiniz. İşte temel bir örnek:&lt;/p&gt;
+
+&lt;h3 id=&quot;adımlar&quot;&gt;Adımlar:&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Gerekli Kütüphaneleri Yükleme&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Veriyi Çekme&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;HTML’den İlgili Veriyi Ayıklama&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;örnek-kod&quot;&gt;Örnek Kod:&lt;/h3&gt;
+
+&lt;p&gt;Örneğin, bir haber sitesinden başlıkları çekmek isteyelim:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;import requests
+from bs4 import BeautifulSoup
+
+# URL&apos;yi belirleyin
+url = &apos;https://example.com&apos;
+
+# URL&apos;ye GET isteği yapın
+response = requests.get(url)
+
+# HTML içeriğini BeautifulSoup ile ayrıştırın
+soup = BeautifulSoup(response.content, &apos;html.parser&apos;)
+
+# İlgili veriyi (örneğin başlıklar) ayıklayın
+headlines = soup.find_all(&apos;h2&apos;)  # H2 başlıklarını bul
+
+# Başlıkları yazdırın
+for headline in headlines:
+    print(headline.text)
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
  
 
 </feed>
