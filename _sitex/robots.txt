@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://srdru.github.io/sitemap.xml
