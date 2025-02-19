@@ -4,7 +4,7 @@
  <title>serdar uslu | srdru.github.io</title>
  <link href="https://srdru.github.io/atom.xml" rel="self"/>
  <link href="https://srdru.github.io/"/>
- <updated>2025-02-18T23:04:26+03:00</updated>
+ <updated>2025-02-19T22:43:11+03:00</updated>
  <id>https://srdru.github.io</id>
  <author>
    <name>Serdar Uslu</name>
@@ -13,27 +13,13 @@
 
  
  <entry>
-   <title>Tek Disketlik İşletim Sistemi - Menuet OS</title>
-   <link href="https://srdru.github.io/tek-disketlik-isletim-sistemi-menuet-os/"/>
-   <updated>2008-12-02T15:15:26+03:00</updated>
-   <id>https://srdru.github.io/python-ile-siteden-veri-cekme</id>
-   <content type="html">&lt;p&gt;Windows, Linux gibi popüler işletim sistemlerinin yanında bir o kadar gelişmiş ama pek bilinmeyen işletim sistemleri gün geçtikçe çoğalıyor.&lt;/p&gt;
+   <title>Test Başlık</title>
+   <link href="https://srdru.github.io/test-baslik/"/>
+   <updated>2025-02-20T01:41:50+03:00</updated>
+   <id>https://srdru.github.io/test-baslik</id>
+   <content type="html">&lt;h2 id=&quot;test-başlık&quot;&gt;Test Başlık&lt;/h2&gt;
 
-&lt;p&gt;Windows’un Vista sürümünün kapladığı alan gb ile ifade edilirken MenuetOS adlı işletim sistemi ise kb ile ifade ediliyor.Öyleki MenuetOS sadece bir diskete sığabiliyor ve disket üzerinden çalışıyor.&lt;/p&gt;
-
-&lt;p&gt;Hurdaya ayrılmış bilgisayarlar üzerinde bile rahatça çalışabilen MenuetOS oldukça kullanışlı bir arayüze sahip. Tamamı Assembly ile yazılmış olan MenuetOS yazılım geliştiriciler tarafından geliştirilmeye uygun bir sistem olmakla beraber &lt;a rel=&quot;nofollow&quot; href=&quot;http://www.menuetos.net/&quot; target=&quot;_blank&quot;&gt;www.menuetos.net&lt;/a&gt; adresinde kullanıcılarını bekliyor.&lt;/p&gt;
-
-&lt;p&gt;Şimdi gelelim MenuetOS’u bilgisayarınızda nasıl deneyeceğinize. Bizzat denedim ve MenuetOS u eski birbilgisayarda çalıştırmayı başardım.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/post/menuetos-desktop.png&quot; alt=&quot;Linux Shred&quot; title=&quot;Linux Shred&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;MenuetOS işletim sistemleri içinde şüphesiz en basit arayüzle kullanıcılarını bekleyen ve diğer işletim sistemleri gibi karmaşık olmayan altayapısı Assembly ile oluşturulmuş bir işletim sistemi.&lt;/p&gt;
-
-&lt;p&gt;MenuetOS tek bir diskete sığacak boyutta ve kullanımı oldukça kolay.Tek yapmanız gereken &lt;a rel=&quot;nofollow&quot; href=&quot;http://www.menuetos.net/&quot; target=&quot;_blank&quot;&gt;www.menuetos.net&lt;/a&gt;sitesinden 32 veya 64 bit (Çalıştıracağınız bilgisayar mimarisine göre değişir) indirdikten sonra .iso uzantılı dosyayı diskete yazdırmak.&lt;/p&gt;
-
-&lt;p&gt;Daha sonra kullanmak istediğiniz bilgisayarın disket bölümüne takıp bilgisayarı yeniden başlatmak ve BIOS menüsünden (F2,F5,DEL tuşuyla BIOS menusune girebilirsiniz) boot seçeneğini disket sürücüsü seçmek. Bu işlemleri yaptıktan sonra bilgisayarınızı yeniden başlatınca bilgisayar disket üzerinden başlatılıyor ve bilgisayarınızda kurulu olan diğer işletim sistemine (Windows,Linux,MacOS gibi) hiçbir zarar vermiyor.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/images/post/menuetos-quake.png&quot; alt=&quot;Linux Shred&quot; title=&quot;Linux Shred&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/p&gt;
 </content>
  </entry>
  
