@@ -4,24 +4,13 @@
  <title>serdar uslu | srdru.github.io</title>
  <link href="https://srdru.github.io/atom.xml" rel="self"/>
  <link href="https://srdru.github.io/"/>
- <updated>2025-02-20T20:45:11+03:00</updated>
+ <updated>2025-02-20T21:42:02+03:00</updated>
  <id>https://srdru.github.io</id>
  <author>
    <name>Serdar</name>
    <email>srdr@tuta.io</email>
  </author>
 
- 
- <entry>
-   <title>Test Başlık</title>
-   <link href="https://srdru.github.io/test-baslik/"/>
-   <updated>2025-02-20T23:43:54+03:00</updated>
-   <id>https://srdru.github.io/test-baslik</id>
-   <content type="html">&lt;h2 id=&quot;bu-bir-test-başlığıdır&quot;&gt;Bu bir test başlığıdır.&lt;/h2&gt;
-
-&lt;p&gt;Bu bir test metnidir.&lt;/p&gt;
-</content>
- </entry>
  
 
 </feed>

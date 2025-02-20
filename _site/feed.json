@@ -16,24 +16,5 @@
     
 "items": [
     
-        {
-            "id": "https://srdru.github.io/test-baslik/",
-            "title": "Test Başlık",
-            "summary": null,
-            "content_text": "Bu bir test başlığıdır.Bu bir test metnidir.",
-            "content_html": "<h2 id=\"bu-bir-test-başlığıdır\">Bu bir test başlığıdır.</h2><p>Bu bir test metnidir.</p>",
-            "url": "https://srdru.github.io/test-baslik/",
-            
-            
-            
-            "tags": ["etiket1","etiket2"],
-            
-            "date_published": "2025-02-20T23:43:54+03:00",
-            "date_modified": "2025-02-20T23:43:54+03:00",
-            
-                "author": "Serdar Uslu"
-            
-        }
-    
     ]
 }
