@@ -1,11 +1,11 @@
 ---
-title: Test Başlık
+title: 'Test Başlık'
 date: 2025-02-19T22:41:50+00:00
 author: Serdar Uslu
 layout: post
 permalink: /test-baslik/
 categories: Genel
-tags: [etiket1, etiket2]
+tags: [etiket1 etiket2]
 ---
 
 ## Test Başlık
