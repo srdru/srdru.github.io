@@ -4,10 +4,10 @@
  <title>serdar uslu | srdru.github.io</title>
  <link href="https://srdru.github.io/atom.xml" rel="self"/>
  <link href="https://srdru.github.io/"/>
- <updated>2025-02-19T22:57:07+03:00</updated>
+ <updated>2025-02-20T20:35:38+03:00</updated>
  <id>https://srdru.github.io</id>
  <author>
-   <name>Serdar Uslu</name>
+   <name>Serdar</name>
    <email>srdr@tuta.io</email>
  </author>
 
@@ -19,7 +19,11 @@
    <id>https://srdru.github.io/test-baslik</id>
    <content type="html">&lt;h2 id=&quot;test-başlık&quot;&gt;Test Başlık&lt;/h2&gt;
 
-&lt;p&gt;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/p&gt;
+&lt;p&gt;Lorem Ipsum is simply dummy text of the printing and typesetting industry.&lt;/p&gt;
+
+&lt;p&gt;Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.&lt;/p&gt;
+
+&lt;p&gt;It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/p&gt;
 </content>
  </entry>
  
