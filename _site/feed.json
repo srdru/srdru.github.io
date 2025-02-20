@@ -20,18 +20,18 @@
             "id": "https://srdru.github.io/test-baslik/",
             "title": "Test Başlık",
             "summary": null,
-            "content_text": "Test BaşlıkLorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-            "content_html": "<h2 id=\"test-başlık\">Test Başlık</h2><p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p><p>Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p><p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>",
+            "content_text": "Bu bir test başlığıdır.Bu bir test metnidir.",
+            "content_html": "<h2 id=\"bu-bir-test-başlığıdır\">Bu bir test başlığıdır.</h2><p>Bu bir test metnidir.</p>",
             "url": "https://srdru.github.io/test-baslik/",
             
             
             
             "tags": ["etiket1","etiket2"],
             
-            "date_published": "2025-02-20T01:41:50+03:00",
-            "date_modified": "2025-02-20T01:41:50+03:00",
+            "date_published": "2025-02-20T23:43:54+03:00",
+            "date_modified": "2025-02-20T23:43:54+03:00",
             
-                "author": "Serdar"
+                "author": "Serdar Uslu"
             
         }
     
