@@ -4,13 +4,34 @@
  <title>serdar uslu | srdru.github.io</title>
  <link href="https://srdru.github.io/atom.xml" rel="self"/>
  <link href="https://srdru.github.io/"/>
- <updated>2025-02-20T21:42:02+03:00</updated>
+ <updated>2025-02-20T21:59:27+03:00</updated>
  <id>https://srdru.github.io</id>
  <author>
    <name>Serdar</name>
    <email>srdr@tuta.io</email>
  </author>
 
+ 
+ <entry>
+   <title>Örnek Test Başlığı</title>
+   <link href="https://srdru.github.io/ornek-test-basligi/"/>
+   <updated>2025-02-20T03:00:00+03:00</updated>
+   <id>https://srdru.github.io/ornek-test-basligi</id>
+   <content type="html">&lt;p&gt;Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Calisan:
+    def __init__(self,ad,soyad):
+        self.ad = ad
+        self.soyad = soyad
+        self.mail = f&quot;{ad}{soyad}@sirket.com&quot;
+    def tamad(self):
+        return f&quot;Adı : {self.ad}, Soyadı : {self.soyad}, Mail : {self.mail}&quot;
+  
+calisan1 = Calisan(&quot;serdar&quot;,&quot;uslu&quot;)
+print(calisan1.tamad())
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+ </entry>
  
 
 </feed>
