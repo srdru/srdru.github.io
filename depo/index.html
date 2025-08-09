@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <title>BOBİN DEPO - SERDAR USLU</title>
+  <title>PDF Arama + Zoom + Dikey Metin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <style>
@@ -43,8 +43,8 @@
 
   <div id="controls">
     <form id="search-form">
-      <input type="text" autocomplete="off" id="search-input" placeholder="Bobin Cins Gr/En Ara..." />
-      <button type="submit">Ara!</button>
+      <input type="text" id="search-input" placeholder="Kelime ara..." />
+      <button type="submit">Ara</button>
     </form>
     <div class="zoom-buttons">
       <button type="button" id="zoom-in">➕ Yakınlaştır</button>
@@ -150,9 +150,9 @@
         if (isVertical) {
           // Dikey metin için yeni düzeltme
           width = Math.sqrt(m[2] * m[2] + m[3] * m[3]);
-          height = textWidth * 0.9;
-          left = toCSS(p0[0] - (width / 2) - 5);
-          top = toCSS(p0[1] - height);
+          height = textWidth * 0.8;
+          left = toCSS(p0[0] - (width / 1));
+          top = toCSS(p0[1] - height - 10);
           
           const hl = document.createElement('div');
           hl.className = 'highlight';
