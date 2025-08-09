@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>BOBİN DEPO - SERDAR USLU</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    #controls {
+      display: grid; gap: 10px; background: #f7f7f7; padding: 10px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    #controls form { display: flex; gap: 10px; justify-content: center; }
+    .zoom-buttons { display: flex; justify-content: center; gap: 10px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    #viewer {
+      width: 100vw; height: calc(100vh - 100px); overflow: auto; background: #fff;
+    }
+    #pageLayer {
+      position: relative;
+      margin-left: 0;
+      display: inline-block;
+    }
+    #pdf-canvas { display: block; }
+    #overlay {
+      position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .highlight {
+      position: absolute;
+      background-color: rgba(255, 0, 0, 0.5);
+      z-index: 10;
+      animation: blink 1.2s steps(2, start) infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="controls">
+    <form id="search-form">
+      <input type="text" autocomplete="off" id="search-input" placeholder="Bobin Cins Gr/En Ara..." />
+      <button type="submit">Ara!</button>
+    </form>
+    <div class="zoom-buttons">
+      <button type="button" id="zoom-in">➕ Yakınlaştır</button>
+      <button type="button" id="zoom-out">➖ Uzaklaştır</button>
+      <button type="button" id="fit-width">↔️ Genişliğe Sığdır</button>
+      <button type="button" id="reset-zoom">🔄 Sıfırla</button>
+    </div>
+  </div>
+
+  <div id="viewer">
+    <div id="pageLayer">
+      <canvas id="pdf-canvas"></canvas>
+      <div id="overlay"></div>
+    </div>
+  </div>
+
+  <script>
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+    const url = 'yerlesim.pdf';
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+    const overlay = document.getElementById('overlay');
+    const pageLayer = document.getElementById('pageLayer');
+    const searchInput = document.getElementById('search-input');
+
+    let pdfDoc = null;
+    let page = null;
+    let textItems = [];
+    let viewport = null;
+    let currentScale = 1.5;
+    let dpr = window.devicePixelRatio || 1;
+
+    pdfjsLib.getDocument(url).promise.then(doc => {
+      pdfDoc = doc;
+      return pdfDoc.getPage(1);
+    }).then(p => {
+      page = p;
+      renderPage(true);
+    });
+
+    function renderPage(fitToWidth = false) {
+      if (!page) return;
+
+      if (fitToWidth) {
+        const containerWidth = document.getElementById('viewer').clientWidth;
+        const unscaled = page.getViewport({ scale: 1 });
+        currentScale = containerWidth / unscaled.width;
+      }
+
+      const renderViewport = page.getViewport({ scale: currentScale * dpr });
+      viewport = renderViewport;
+
+      canvas.width = renderViewport.width;
+      canvas.height = renderViewport.height;
+      canvas.style.width = renderViewport.width / dpr + 'px';
+      canvas.style.height = renderViewport.height / dpr + 'px';
+
+      pageLayer.style.width = renderViewport.width / dpr + 'px';
+      pageLayer.style.height = renderViewport.height / dpr + 'px';
+
+      overlay.innerHTML = '';
+
+      const renderTask = page.render({ canvasContext: ctx, viewport: renderViewport });
+      const textTask = page.getTextContent();
+
+      Promise.all([renderTask.promise, textTask]).then(([_, textContent]) => {
+        textItems = textContent.items || [];
+        const q = searchInput.value.trim().toLowerCase();
+        if (q) applyHighlights(q);
+      });
+    }
+
+    function applyHighlights(query) {
+      overlay.innerHTML = '';
+      if (!query) return;
+
+      const toCSS = v => v / dpr;
+
+      textItems.forEach(item => {
+        const text = (item.str || '').toLowerCase();
+        if (!text.includes(query)) return;
+
+        const m = pdfjsLib.Util.transform(viewport.transform, item.transform);
+
+        // Daha doğru boyut hesaplama
+        const fontSize = Math.sqrt(m[0] * m[0] + m[1] * m[1]);
+        const charWidth = fontSize * 0.6;
+        const textWidth = charWidth * item.str.length;
+        const textHeight = fontSize * 1.2;
+
+        const p0 = [m[4], m[5]];
+        const vX = [m[0], m[1]];
+        const vY = [m[2], m[3]];
+
+        // Metin yönünü belirle (yatay/dikey)
+        const isVertical = Math.abs(m[2]) > Math.abs(m[0]);
+        
+        let left, top, width, height;
+        
+        if (isVertical) {
+          // Dikey metin için yeni düzeltme
+          width = Math.sqrt(m[2] * m[2] + m[3] * m[3]);
+          height = textWidth * 0.9;
+          left = toCSS(p0[0] - (width / 2) - 5);
+          top = toCSS(p0[1] - height);
+          
+          const hl = document.createElement('div');
+          hl.className = 'highlight';
+          hl.style.left = `${left}px`;
+          hl.style.top = `${top}px`;
+          hl.style.width = `${width}px`;
+          hl.style.height = `${height}px`;
+          
+          // Dikey metin için dönüşüm uygula (90 derece saat yönünde)
+          hl.style.transform = 'rotate(360deg)';
+          hl.style.transformOrigin = '0 0';
+          
+          overlay.appendChild(hl);
+        } else {
+          // Yatay metin için
+          width = textWidth;
+          height = textHeight;
+          left = toCSS(p0[0]);
+          top = toCSS(p0[1] - (textHeight * 0.8));
+
+          const hl = document.createElement('div');
+          hl.className = 'highlight';
+          hl.style.left = `${left}px`;
+          hl.style.top = `${top}px`;
+          hl.style.width = `${width}px`;
+          hl.style.height = `${height}px`;
+
+          overlay.appendChild(hl);
+        }
+      });
+    }
+
+    document.getElementById('search-form').addEventListener('submit', e => {
+      e.preventDefault();
+      applyHighlights(searchInput.value.trim().toLowerCase());
+    });
+
+    document.getElementById('zoom-in').addEventListener('click', () => {
+      currentScale = Math.min(5, currentScale + 0.2);
+      renderPage();
+    });
+
+    document.getElementById('zoom-out').addEventListener('click', () => {
+      currentScale = Math.max(0.4, currentScale - 0.2);
+      renderPage();
+    });
+
+    document.getElementById('fit-width').addEventListener('click', () => {
+      renderPage(true);
+    });
+
+    document.getElementById('reset-zoom').addEventListener('click', () => {
+      currentScale = 1.5;
+      renderPage();
+    });
+  </script>
+</body>
+</html>
