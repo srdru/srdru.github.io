@@ -5,6 +5,11 @@
   <title>Bobin Depo Yerleşim Planı</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
   <style>
     body { margin: 0; font-family: Arial, sans-serif; }
     #controls {
@@ -44,8 +49,9 @@
   <div id="controls">
     <form id="search-form">
       <input type="text" autocomplete="off" id="search-input" placeholder="Cins Gr/En ara..." />
-      <button type="submit">Ara</button>
+      <button type="submit" class="btn btn-info">🔍️ Ara</button>
     </form>
+	
     <div class="zoom-buttons">
       <button type="button" id="zoom-in">➕ Yakınlaştır</button>
       <button type="button" id="zoom-out">➖ Uzaklaştır</button>
@@ -53,7 +59,6 @@
       <button type="button" id="reset-zoom">🔄 Sıfırla</button>
     </div>
   </div>
-
   <div id="viewer">
     <div id="pageLayer">
       <canvas id="pdf-canvas"></canvas>
@@ -191,6 +196,13 @@
       currentScale = 1.5;
       renderPage();
     });
+
+// Arama formu submit olayını yeni fonksiyona bağla
+document.getElementById('search-form').addEventListener('submit', e => {
+  e.preventDefault();
+  applyHighlightsWithCount(searchInput.value.trim().toLowerCase());
+});
+
   </script>
 </body>
 </html>
