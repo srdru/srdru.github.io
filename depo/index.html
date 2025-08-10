@@ -80,6 +80,12 @@
     let currentScale = 1.5;
     const dpr = window.devicePixelRatio || 1;
 
+    // Offset ayarları (px)
+    const offset = {
+      horizontal: { x: -3, y: 1 }, // yatay metin için sola 3px, aşağı 1 px kaydır
+      vertical:   { x: -9, y: 0 } // dikey metin için sola 9px, yukarı 0px kaydır
+    };
+
     pdfjsLib.getDocument(url).promise.then(doc => {
       pdfDoc = doc;
       return pdfDoc.getPage(1);
@@ -97,10 +103,8 @@
         currentScale = containerWidth / unscaled.width;
       }
 
-      // overlay için dpr yok
       viewport = page.getViewport({ scale: currentScale });
 
-      // canvas için yüksek çözünürlük (retina)
       const renderViewport = page.getViewport({ scale: currentScale * dpr });
       canvas.width = renderViewport.width;
       canvas.height = renderViewport.height;
@@ -134,7 +138,6 @@
 
         const fontHeight = Math.sqrt(m[2] * m[2] + m[3] * m[3]);
         const fontWidth = Math.sqrt(m[0] * m[0] + m[1] * m[1]);
-
         const isVertical = fontHeight > fontWidth;
 
         const x = m[4];
@@ -145,18 +148,18 @@
         if (isVertical) {
           width = fontHeight;
           height = fontWidth * item.str.length * 0.6;
-          left = x;
-          top = y - height;
+          left = x + offset.vertical.x;
+          top = y - height + offset.vertical.y;
         } else {
           width = fontWidth * item.str.length * 0.6;
           height = fontHeight;
-          left = x;
-          top = y - height;
+          left = x + offset.horizontal.x;
+          top = y - height + offset.horizontal.y;
         }
-// kaydırma ayarları buradan
+
         const hl = document.createElement('div');
         hl.className = 'highlight';
-        hl.style.left = `${left - 9}px`;
+        hl.style.left = `${left}px`;
         hl.style.top = `${top}px`;
         hl.style.width = `${width}px`;
         hl.style.height = `${height}px`;
