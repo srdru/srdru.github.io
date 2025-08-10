@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Bobin Depo Yerleşim Planı</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
   <style>
     body { margin: 0; font-family: Arial, sans-serif; }
@@ -26,23 +26,39 @@
     #overlay {
       position: absolute; left: 0; top: 0; width: 100%; height: 100%;
       pointer-events: none;
+      touch-action: manipulation;
     }
     .highlight {
       position: absolute;
       background-color: rgba(255, 0, 0, 0.5);
       z-index: 10;
       animation: blink 1.2s steps(2, start) infinite;
+      box-sizing: border-box;
+      overflow: hidden;
     }
     @keyframes blink {
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
+    }
+    /* Mobil Optimizasyon */
+    @media screen and (max-width: 768px) {
+      .highlight {
+        max-height: 95% !important;
+      }
+      #controls {
+        padding: 8px;
+      }
+      button {
+        padding: 5px 8px;
+        font-size: 14px;
+      }
     }
   </style>
 </head>
 <body>
 
   <div id="controls">
-    <form id="search-form">
+    <form id="search-form" autocomplete="off">
       <input type="text" autocomplete="off" id="search-input" placeholder="Cins En/Gr ara..." />
       <button type="submit">Ara</button>
     </form>
@@ -125,6 +141,7 @@
       if (!query) return;
 
       const toCSS = v => v / dpr;
+      const isMobile = window.innerWidth <= 768;
 
       textItems.forEach(item => {
         const text = (item.str || '').toLowerCase();
@@ -148,11 +165,11 @@
         let left, top, width, height;
         
         if (isVertical) {
-          // Dikey metin için yeni düzeltme
-          width = Math.sqrt(m[2] * m[2] + m[3] * m[3]);
-          height = textWidth * 0.8;
-          left = toCSS(p0[0] - (width / 1));
-          top = toCSS(p0[1] - height - 10);
+          // Dikey metin için mobil uyumlu ayarlar
+          width = Math.sqrt(m[2] * m[2] + m[3] * m[3]) * (isMobile ? 1.1 : 1.0);
+          height = textWidth * (isMobile ? 0.7 : 0.8); // Mobilde daha dar
+          left = toCSS(p0[0] - (width / (isMobile ? 1.2 : 1)));
+          top = toCSS(p0[1] - height - (isMobile ? 5 : 10)); // Mobilde daha az kaydırma
           
           const hl = document.createElement('div');
           hl.className = 'highlight';
@@ -161,9 +178,9 @@
           hl.style.width = `${width}px`;
           hl.style.height = `${height}px`;
           
-          // Dikey metin için dönüşüm uygula (90 derece saat yönünde)
+          // Dikey metin için dönüşüm
           hl.style.transform = 'rotate(360deg)';
-          hl.style.transformOrigin = '0 0';
+          hl.style.transformOrigin = 'left top';
           
           overlay.appendChild(hl);
         } else {
@@ -207,6 +224,15 @@
     document.getElementById('reset-zoom').addEventListener('click', () => {
       currentScale = 1.5;
       renderPage();
+    });
+
+    // Mobil cihazlar için ek ayar
+    window.addEventListener('resize', function() {
+      if (window.innerWidth <= 768) {
+        document.querySelectorAll('.highlight').forEach(hl => {
+          hl.style.maxHeight = '95%';
+        });
+      }
     });
   </script>
 </body>
