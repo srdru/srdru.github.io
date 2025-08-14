@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bobin Depo Yerleşim Planı</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; }
+    #controls {
+      display: grid; gap: 10px; background: #f7f7f7; padding: 10px;
+      position: sticky; top: 0; z-index: 100;
+    }
+    #controls form { display: flex; gap: 10px; justify-content: center; }
+    .zoom-buttons { display: flex; justify-content: center; gap: 10px; }
+    button { padding: 6px 10px; cursor: pointer; }
+    #viewer {
+      width: 100vw; height: calc(100vh - 100px); overflow: auto; background: #fff;
+    }
+    #pageLayer {
+      position: relative;
+      margin-left: 0;
+      display: inline-block;
+    }
+    #pdf-canvas { display: block; }
+    #overlay {
+      position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+      pointer-events: none;
+    }
+    .highlight {
+      position: absolute;
+      background-color: rgba(255, 0, 0, 0.5);
+      z-index: 10;
+      animation: blink 1.2s steps(2, start) infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="controls">
+    <form id="search-form">
+      <input type="text" autocomplete="off" id="search-input" placeholder="Cins Gr/En ara..." />
+      <button type="submit" class="btn btn-info">🔍️ Ara</button>
+    </form>
+	
+    <div class="zoom-buttons">
+      <button type="button" id="zoom-in">➕ Yakınlaştır</button>
+      <button type="button" id="zoom-out">➖ Uzaklaştır</button>
+      <button type="button" id="fit-width">↔️ Ekrana Sığdır</button>
+      <button type="button" id="reset-zoom">🔄 Sıfırla</button>
+    </div>
+  </div>
+  <div id="viewer">
+    <div id="pageLayer">
+      <canvas id="pdf-canvas"></canvas>
+      <div id="overlay"></div>
+    </div>
+  </div>
+
+  <script>
+    const pdfjsLib = window['pdfjs-dist/build/pdf'];
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js';
+
+    const url = 'yerlesim.pdf';
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+    const overlay = document.getElementById('overlay');
+    const pageLayer = document.getElementById('pageLayer');
+    const searchInput = document.getElementById('search-input');
+
+    let pdfDoc = null;
+    let page = null;
+    let textItems = [];
+    let viewport = null;
+    let currentScale = 1.5;
+    const dpr = window.devicePixelRatio || 1;
+
+    // Offset ayarları (px) — zoom ile ölçeklenecek
+    const offset = {
+      horizontal: { x: -3, y: 0 },
+      vertical:   { x: -7, y: 0 }
+    };
+
+    pdfjsLib.getDocument(url).promise.then(doc => {
+      pdfDoc = doc;
+      return pdfDoc.getPage(1);
+    }).then(p => {
+      page = p;
+      renderPage(true);
+    });
+
+    function renderPage(fitToWidth = false) {
+      if (!page) return;
+
+      if (fitToWidth) {
+        const containerWidth = document.getElementById('viewer').clientWidth;
+        const unscaled = page.getViewport({ scale: 1 });
+        currentScale = containerWidth / unscaled.width;
+      }
+
+      viewport = page.getViewport({ scale: currentScale });
+
+      const renderViewport = page.getViewport({ scale: currentScale * dpr });
+      canvas.width = renderViewport.width;
+      canvas.height = renderViewport.height;
+      canvas.style.width = viewport.width + 'px';
+      canvas.style.height = viewport.height + 'px';
+
+      pageLayer.style.width = viewport.width + 'px';
+      pageLayer.style.height = viewport.height + 'px';
+
+      overlay.innerHTML = '';
+
+      const renderTask = page.render({ canvasContext: ctx, viewport: renderViewport });
+      const textTask = page.getTextContent();
+
+      Promise.all([renderTask.promise, textTask]).then(([_, textContent]) => {
+        textItems = textContent.items || [];
+        const q = searchInput.value.trim().toLowerCase();
+        if (q) applyHighlights(q);
+      });
+    }
+
+    function applyHighlights(query) {
+      overlay.innerHTML = '';
+      if (!query) return;
+
+      textItems.forEach(item => {
+        const text = (item.str || '').toLowerCase();
+        if (!text.includes(query)) return;
+
+        const m = pdfjsLib.Util.transform(viewport.transform, item.transform);
+
+        const fontHeight = Math.sqrt(m[2] * m[2] + m[3] * m[3]);
+        const fontWidth = Math.sqrt(m[0] * m[0] + m[1] * m[1]);
+        const isVertical = fontHeight > fontWidth;
+
+        const x = m[4];
+        const y = m[5];
+
+        let left, top, width, height;
+
+        if (isVertical) {
+          width = fontHeight;
+          height = fontWidth * item.str.length * 0.6;
+          left = x + offset.vertical.x * currentScale;
+          top = y - height + offset.vertical.y * currentScale;
+        } else {
+          width = fontWidth * item.str.length * 0.6;
+          height = fontHeight;
+          left = x + offset.horizontal.x * currentScale;
+          top = y - height + offset.horizontal.y * currentScale;
+        }
+
+        const hl = document.createElement('div');
+        hl.className = 'highlight';
+        hl.style.left = `${left}px`;
+        hl.style.top = `${top}px`;
+        hl.style.width = `${width}px`;
+        hl.style.height = `${height}px`;
+
+        overlay.appendChild(hl);
+      });
+    }
+
+    document.getElementById('search-form').addEventListener('submit', e => {
+      e.preventDefault();
+      applyHighlights(searchInput.value.trim().toLowerCase());
+    });
+
+    document.getElementById('zoom-in').addEventListener('click', () => {
+      currentScale = Math.min(5, currentScale + 0.2);
+      renderPage();
+    });
+
+    document.getElementById('zoom-out').addEventListener('click', () => {
+      currentScale = Math.max(0.4, currentScale - 0.2);
+      renderPage();
+    });
+
+    document.getElementById('fit-width').addEventListener('click', () => {
+      renderPage(true);
+    });
+
+    document.getElementById('reset-zoom').addEventListener('click', () => {
+      currentScale = 1.5;
+      renderPage();
+    });
+
+// Arama formu submit olayını yeni fonksiyona bağla
+document.getElementById('search-form').addEventListener('submit', e => {
+  e.preventDefault();
+  applyHighlightsWithCount(searchInput.value.trim().toLowerCase());
+});
+
+  </script>
+</body>
+</html>
