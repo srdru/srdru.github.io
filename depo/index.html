@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <title>Bobin Depo Yerleşim Planı</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
 
   <style>
-    body { margin: 0; font-family: Arial, sans-serif; }
+    body { margin: 0; font-family: Arial, sans-serif; touch-action: manipulation; }
     #controls {
       display: grid; gap: 10px; background: #f7f7f7; padding: 10px;
       position: sticky; top: 0; z-index: 100;
@@ -42,6 +42,27 @@
       0%, 100% { opacity: 1; }
       50% { opacity: 0; }
     }
+
+    #zoom-warning {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 0, 0, 0.85);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      z-index: 9999;
+      display: none;
+      animation: fadeOut 3s forwards;
+    }
+
+    @keyframes fadeOut {
+      0% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { opacity: 0; display: none; }
+    }
   </style>
 </head>
 <body>
@@ -51,7 +72,7 @@
       <input type="text" autocomplete="off" id="search-input" placeholder="Cins Gr/En ara..." />
       <button type="submit" class="btn btn-info">🔍️ Ara</button>
     </form>
-	
+    
     <div class="zoom-buttons">
       <button type="button" id="zoom-in">➕ Yakınlaştır</button>
       <button type="button" id="zoom-out">➖ Uzaklaştır</button>
@@ -59,12 +80,15 @@
       <button type="button" id="reset-zoom">🔄 Sıfırla</button>
     </div>
   </div>
+
   <div id="viewer">
     <div id="pageLayer">
       <canvas id="pdf-canvas"></canvas>
       <div id="overlay"></div>
     </div>
   </div>
+
+  <div id="zoom-warning">Yakınlaştırma/Uzaklaştırma işlemini üstteki butonlarla yapın</div>
 
   <script>
     const pdfjsLib = window['pdfjs-dist/build/pdf'];
@@ -85,7 +109,6 @@
     let currentScale = 1.5;
     const dpr = window.devicePixelRatio || 1;
 
-    // Offset ayarları (px) — zoom ile ölçeklenecek
     const offset = {
       horizontal: { x: -3, y: 0 },
       vertical:   { x: -7, y: 0 }
@@ -197,12 +220,39 @@
       renderPage();
     });
 
-// Arama formu submit olayını yeni fonksiyona bağla
-document.getElementById('search-form').addEventListener('submit', e => {
-  e.preventDefault();
-  applyHighlightsWithCount(searchInput.value.trim().toLowerCase());
-});
+    // Mobil pinch-to-zoom algılama ve uyarı gösterme
+    let lastTouchDistance = null;
 
+    function showZoomWarning() {
+      const warning = document.getElementById('zoom-warning');
+      warning.style.display = 'block';
+      warning.style.opacity
+            warning.style.opacity = '1';
+      warning.style.animation = 'fadeOut 3s forwards';
+    }
+
+    document.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 2) {
+        lastTouchDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+      }
+    }, { passive: false });
+
+    document.addEventListener('touchmove', function (e) {
+      if (e.touches.length === 2) {
+        const currentDistance = Math.hypot(
+          e.touches[0].clientX - e.touches[1].clientX,
+          e.touches[0].clientY - e.touches[1].clientY
+        );
+
+        if (lastTouchDistance && Math.abs(currentDistance - lastTouchDistance) > 10) {
+          e.preventDefault();
+          showZoomWarning();
+        }
+      }
+    }, { passive: false });
   </script>
 </body>
 </html>
